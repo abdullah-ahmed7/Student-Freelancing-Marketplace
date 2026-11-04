@@ -634,3 +634,210 @@ button {
     flex-direction: column;
   }
 }
+
+.service-details {
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 20px;
+  color: white;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 24px;
+  color: #a0cfc0;
+  text-decoration: none;
+}
+
+.service-details-card {
+  background: #151a19;
+  border: 1px solid #2b3935;
+  border-radius: 16px;
+  padding: 35px;
+}
+
+.service-details-card h1 {
+  font-size: 36px;
+  margin: 12px 0;
+}
+
+.service-description {
+  color: #b7c1bd;
+  line-height: 1.8;
+  margin: 20px 0;
+}
+
+.seller-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 28px 0;
+}
+
+.seller-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #234d40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.seller-info p,
+.service-details-meta p {
+  color: #a0aaa6;
+  margin: 5px 0;
+}
+
+.service-details-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 60px;
+  border-top: 1px solid #2b3935;
+  padding: 24px 0;
+  margin-bottom: 12px;
+}
+
+.service-details-meta h2 {
+  color: #8ee0b9;
+  font-size: 24px;
+}
+
+@media (max-width: 600px) {
+  .service-details {
+    margin: 20px auto;
+    padding: 12px;
+  }
+
+  .service-details-card {
+    padding: 22px;
+  }
+
+  .service-details-card h1 {
+    font-size: 27px;
+  }
+
+  .service-details-meta {
+    gap: 24px;
+  }
+}
+
+/* Create Service Page */
+.create-service-page {
+  padding: 50px 20px 80px;
+}
+
+.create-service-card {
+  width: 100%;
+  max-width: 650px;
+  margin: auto;
+  padding: 35px;
+  background: #111815;
+  border: 1px solid #2a3730;
+  border-radius: 18px;
+}
+
+.create-service-card h1 {
+  font-size: 34px;
+  margin: 10px 0;
+}
+
+.create-service-description {
+  color: #aab5af;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.create-service-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.create-service-card label {
+  color: #dce5df;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.create-service-card input,
+.create-service-card select,
+.create-service-card textarea {
+  width: 100%;
+  padding: 13px;
+  border-radius: 8px;
+  border: 1px solid #35433b;
+  background: #0b0f0e;
+  color: white;
+  outline: none;
+  font: inherit;
+  font-size: 14px;
+}
+
+.create-service-card textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.create-service-card input:focus,
+.create-service-card select:focus,
+.create-service-card textarea:focus {
+  border-color: #42d69b;
+}
+
+.create-service-card input::placeholder,
+.create-service-card textarea::placeholder {
+  color: #87958d;
+}
+
+.form-error {
+  color: #ff8b8b;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+/* My Services */
+.my-services-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+
+.my-services-actions h2 {
+  font-size: 23px;
+}
+
+.create-service-link {
+  display: inline-block;
+  text-decoration: none;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.my-service-view {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+@media (max-width: 600px) {
+  .create-service-page {
+    padding: 25px 14px 50px;
+  }
+
+  .create-service-card {
+    padding: 24px 18px;
+  }
+
+  .create-service-card h1 {
+    font-size: 28px;
+  }
+}

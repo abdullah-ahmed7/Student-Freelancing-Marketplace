@@ -8,6 +8,7 @@ import {
 
 import Marketplace from './pages/marketplace';
 import './App.css';
+import ServiceDetails from './pages/ServiceDetails';
 
 function Navbar() {
   return (
@@ -19,10 +20,18 @@ function Navbar() {
       <div className="nav-links">
         <Link to="/">Home</Link>
         <Link to="/marketplace">Explore Services</Link>
+        <Link to="/my-services">My Services</Link>
         <Link to="/#categories">Categories</Link>
       </div>
 
       <div className="nav-buttons">
+        <Link
+          to="/create-service"
+          className="signup-btn"
+        >
+          Create Service
+        </Link>
+
         <Link to="/login" className="login-btn">
           Login
         </Link>
@@ -230,6 +239,10 @@ function App() {
           <Route
             path="/marketplace"
             element={<Marketplace />}
+          />
+          <Route
+            path="/services/:id"
+            element={<ServiceDetails />}
           />
 
           <Route path="/login" element={<Login />} />
