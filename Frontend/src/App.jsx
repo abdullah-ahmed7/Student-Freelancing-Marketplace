@@ -6,6 +6,7 @@ import {
   Link
 } from 'react-router-dom';
 
+import Marketplace from './pages/marketplace';
 import './App.css';
 
 function Navbar() {
@@ -17,7 +18,8 @@ function Navbar() {
 
       <div className="nav-links">
         <Link to="/">Home</Link>
-        <a href="/#categories">Categories</a>
+        <Link to="/marketplace">Explore Services</Link>
+        <Link to="/#categories">Categories</Link>
       </div>
 
       <div className="nav-buttons">
@@ -53,7 +55,7 @@ function Home() {
         </p>
 
         <div className="hero-buttons">
-          <Link to="/login" className="primary-btn">
+          <Link to="/marketplace" className="primary-btn">
             Explore Services →
           </Link>
 
@@ -67,7 +69,9 @@ function Home() {
             type="text"
             placeholder="What service are you looking for?"
           />
-          <button>Search</button>
+          <Link to="/marketplace" className="primary-btn">
+            Search
+          </Link>
         </div>
       </section>
 
@@ -77,16 +81,23 @@ function Home() {
 
         <div className="category-grid">
           <div className="category-card">
-            💻<h3>Programming</h3>
+            💻
+            <h3>Programming</h3>
           </div>
+
           <div className="category-card">
-            🎨<h3>Graphic Design</h3>
+            🎨
+            <h3>Graphic Design</h3>
           </div>
+
           <div className="category-card">
-            ✍️<h3>Content Writing</h3>
+            ✍️
+            <h3>Content Writing</h3>
           </div>
+
           <div className="category-card">
-            📊<h3>Data Science</h3>
+            📊
+            <h3>Data Science</h3>
           </div>
         </div>
       </section>
@@ -104,13 +115,16 @@ function Login() {
     <section className="auth-section">
       <div className="auth-card">
         <p className="tagline">WELCOME BACK</p>
+
         <h1>Login to StudentHub</h1>
+
         <p className="auth-description">
           Continue your student freelancing journey.
         </p>
 
         <form onSubmit={handleSubmit}>
           <label>Email Address</label>
+
           <input
             type="email"
             placeholder="you@example.com"
@@ -118,6 +132,7 @@ function Login() {
           />
 
           <label>Password</label>
+
           <input
             type="password"
             placeholder="Enter your password"
@@ -148,13 +163,16 @@ function Register() {
     <section className="auth-section">
       <div className="auth-card">
         <p className="tagline">JOIN OUR COMMUNITY</p>
+
         <h1>Create Account</h1>
+
         <p className="auth-description">
           Start offering services or discover student talent.
         </p>
 
         <form onSubmit={handleSubmit}>
           <label>Full Name</label>
+
           <input
             type="text"
             placeholder="Enter your full name"
@@ -162,6 +180,7 @@ function Register() {
           />
 
           <label>Student Email</label>
+
           <input
             type="email"
             placeholder="you@university.edu"
@@ -169,6 +188,7 @@ function Register() {
           />
 
           <label>Password</label>
+
           <input
             type="password"
             placeholder="Create a password"
@@ -177,6 +197,7 @@ function Register() {
           />
 
           <label>Account Type</label>
+
           <select defaultValue="buyer" required>
             <option value="buyer">Buyer</option>
             <option value="seller">Seller</option>
@@ -205,7 +226,14 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Home />} />
+
+          <Route
+            path="/marketplace"
+            element={<Marketplace />}
+          />
+
           <Route path="/login" element={<Login />} />
+
           <Route path="/register" element={<Register />} />
         </Routes>
       </div>

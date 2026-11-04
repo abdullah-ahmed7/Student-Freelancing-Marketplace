@@ -367,3 +367,270 @@ button {
     font-size: 25px;
   }
 }
+
+/* Marketplace */
+.marketplace {
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+
+.market-header {
+  text-align: center;
+  padding: 65px 20px 35px;
+}
+
+.market-header .tagline {
+  margin-bottom: 16px;
+}
+
+.market-header h1 {
+  font-size: clamp(34px, 5vw, 50px);
+  margin-bottom: 14px;
+}
+
+.market-header > p:last-child {
+  color: #aab5af;
+  line-height: 1.7;
+}
+
+/* Search and filters */
+.market-controls {
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 0 25px 35px;
+}
+
+.market-controls input {
+  width: 100%;
+  padding: 16px;
+  background: #151c19;
+  border: 1px solid #303b35;
+  border-radius: 10px;
+  color: white;
+  outline: none;
+  font-size: 15px;
+}
+
+.market-controls input:focus {
+  border-color: #42d69b;
+}
+
+.market-controls input::placeholder {
+  color: #87958d;
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.filter-btn {
+  background: #151c19;
+  border: 1px solid #303b35;
+  color: #b8c2bd;
+}
+
+.filter-btn:hover {
+  border-color: #42d69b;
+}
+
+.filter-btn.active {
+  background: #42d69b;
+  color: #07140e;
+  border-color: #42d69b;
+  font-weight: bold;
+}
+
+/* Service listings */
+.services-section {
+  max-width: 1150px;
+  margin: auto;
+  padding: 0 25px;
+}
+
+.results-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.results-heading h2 {
+  font-size: 24px;
+}
+
+.results-heading span {
+  color: #aab5af;
+  font-size: 13px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.service-card {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  background: #111815;
+  border: 1px solid #2a3730;
+  border-radius: 14px;
+  transition: 0.2s;
+}
+
+.service-card:hover {
+  border-color: #42d69b;
+  transform: translateY(-4px);
+}
+
+.service-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.service-category {
+  color: #42d69b;
+  background: #193329;
+  padding: 7px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+}
+
+.service-id {
+  color: #78877e;
+  font-size: 12px;
+}
+
+.service-card > h3 {
+  font-size: 19px;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.service-description {
+  color: #aab5af;
+  font-size: 14px;
+  line-height: 1.7;
+  min-height: 72px;
+  margin-bottom: 20px;
+}
+
+.seller-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #29342e;
+  margin-top: auto;
+}
+
+.seller-avatar {
+  width: 42px;
+  height: 42px;
+  background: #244735;
+  color: #42d69b;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.seller-label,
+.price-label {
+  color: #87958d;
+  font-size: 11px;
+}
+
+.seller-info p {
+  font-size: 14px;
+  margin-top: 3px;
+}
+
+.service-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 0;
+}
+
+.service-footer h3 {
+  font-size: 19px;
+  margin-top: 5px;
+}
+
+.delivery-time {
+  font-size: 12px;
+  color: #b8c2bd;
+  background: #1b2420;
+  border-radius: 6px;
+  padding: 7px 9px;
+  white-space: nowrap;
+}
+
+.service-view-btn {
+  width: 100%;
+  background: #42d69b;
+  color: #07140e;
+  font-weight: bold;
+  padding: 14px;
+}
+
+.service-view-btn:hover {
+  background: #34c58a;
+}
+
+/* Empty results */
+.empty-results {
+  text-align: center;
+  padding: 65px 20px;
+  border: 1px dashed #35433b;
+  border-radius: 14px;
+}
+
+.empty-results h3 {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.empty-results p {
+  color: #aab5af;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 900px) {
+  .services-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .market-controls,
+  .services-section {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .market-header {
+    padding-top: 45px;
+  }
+
+  .results-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
