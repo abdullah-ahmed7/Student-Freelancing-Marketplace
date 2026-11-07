@@ -12,8 +12,14 @@
 .muted-text { color: var(--text-faint); font-size: 13px; }
 .plain-link { color: inherit; text-decoration: none; }
 .plain-link:hover { color: var(--accent); }
-.clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; min-height: 0 !important; }
-
+.clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    line-clamp: 3;
+    overflow: hidden;
+    min-height: 0 !important;
+}
 /* ---------- Buttons ---------- */
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: 1px solid transparent; border-radius: 8px; padding: 11px 18px; font-size: 14px; font-weight: bold; text-decoration: none; text-align: center; transition: background .15s, border-color .15s; }
 .btn-primary { background: var(--accent); color: var(--accent-ink); }
