@@ -1,5 +1,6 @@
 import { run, currentUserOrThrow, requireAdmin } from './runtime';
-import { ApiError, uid } from './mockDb';
+import { ApiError } from './apiError';
+import { uid } from './mockDb';
 
 export const reportService = {
   create: ({ targetType, targetId, reason, details }) => run('Report', (d) => {

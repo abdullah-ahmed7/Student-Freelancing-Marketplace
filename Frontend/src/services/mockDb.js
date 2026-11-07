@@ -1,18 +1,16 @@
 // Mock repository. Persists to localStorage under ONE key so it behaves like a single data source.
-// This is demo-only infrastructure. It stores NO passwords. Swap services/* to real HTTP calls later.
-import {
-  seedCategories, seedUsers, seedServices, seedOrders, seedMessages,
-  seedReviews, seedNotifications, seedFavorites, seedReports,
-} from '../data/mockSeed';
+// Local development adapter. Starts EMPTY (no seed data): users register and create records themselves.
+// Stores NO passwords. Only imported by the mock path; never initialised in live API mode.
+import { ApiError } from './apiError';
+import { DEFAULT_CATEGORIES } from '../utils/constants';
 
 const KEY = 'studenthub_mock_db_v2';
 const SESSION_KEY = 'studenthub_mock_session_v2';
 
 function seed() {
   return {
-    categories: seedCategories, users: seedUsers, services: seedServices, orders: seedOrders,
-    messages: seedMessages, reviews: seedReviews, notifications: seedNotifications,
-    favorites: seedFavorites, reports: seedReports, portfolio: [],
+    categories: DEFAULT_CATEGORIES.map((name, i) => ({ id: `cat-${i + 1}`, name, icon: '', active: true })), users: [], services: [], orders: [], messages: [],
+    reviews: [], notifications: [], favorites: [], reports: [], portfolio: [],
   };
 }
 
@@ -60,12 +58,6 @@ export function clearSession() {
 // Simulated latency so loading states are real and visible.
 export const delay = (ms = 250) => new Promise((r) => setTimeout(r, ms));
 
-export class ApiError extends Error {
-  constructor(message, status = 400, fields) {
-    super(message);
-    this.status = status;
-    this.fields = fields;
-  }
-}
+export { ApiError };
 
 export function clone(v) { return v === undefined ? v : JSON.parse(JSON.stringify(v)); }

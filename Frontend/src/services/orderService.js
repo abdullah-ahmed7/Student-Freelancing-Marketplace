@@ -1,5 +1,7 @@
 import { run, currentUserOrThrow, publicUser, notify } from './runtime';
-import { ApiError, uid } from './mockDb';
+import { ApiError } from './apiError';
+import { uid } from './mockDb';
+import { isUrl } from '../utils/validators';
 
 // Allowed transitions: [from status][action] = { to, actor, needsNote? }
 // The mock enforces them like a backend would, so the UI shows real "invalid transition" errors.
@@ -86,6 +88,9 @@ export const orderService = {
     if (action === 'deliver') {
       if (!payload.message || payload.message.trim().length < 10) {
         throw new ApiError('Add a delivery note.', 422, { message: 'Write at least 10 characters about what you are delivering.' });
+      }
+      if (payload.link && payload.link.trim() && !isUrl(payload.link.trim())) {
+        throw new ApiError('Enter a valid link.', 422, { link: 'Link must start with http:// or https://' });
       }
       o.delivery = { message: payload.message.trim(), link: (payload.link || '').trim(), at: new Date().toISOString() };
     }

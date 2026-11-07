@@ -1,5 +1,6 @@
 import { run, requireAdmin } from './runtime';
-import { ApiError, uid } from './mockDb';
+import { ApiError } from './apiError';
+import { uid } from './mockDb';
 
 export const categoryService = {
   list: ({ includeInactive = false } = {}) => run('Categories', (d) =>

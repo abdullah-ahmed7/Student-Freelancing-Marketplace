@@ -1,5 +1,6 @@
 import { run, currentUserOrThrow, publicUser, hydrateService } from './runtime';
-import { ApiError, uid } from './mockDb';
+import { ApiError } from './apiError';
+import { uid } from './mockDb';
 
 export const profileService = {
   getMine: () => run('Profile', (d) => ({
