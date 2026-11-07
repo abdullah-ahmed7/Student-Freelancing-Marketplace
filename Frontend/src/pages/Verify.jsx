@@ -4,6 +4,7 @@ import { useAuth, useDocumentTitle, useToast } from '../hooks/useApp';
 import { useSubmit } from '../hooks/useSubmit';
 import { Button, FormField } from '../components/ui';
 import { DEMO_OTP } from '../utils/constants';
+import { USE_MOCK } from '../services';
 
 export default function Verify() {
   useDocumentTitle('Verify account');
@@ -39,11 +40,13 @@ export default function Verify() {
       <div className="auth-card">
         <p className="tagline">VERIFY YOUR ACCOUNT</p>
         <h1>Confirm your university email</h1>
-        <p className="auth-description">We would send a 6-digit code to <strong>{user.email}</strong>. Verified students get a trust badge on their profile and services.</p>
-        <div className="demo-box">
-          <strong>Demo only</strong>
-          <p>No email is sent in demo mode. Use the code <code>{DEMO_OTP}</code>.</p>
-        </div>
+        <p className="auth-description">We will send a 6-digit code to <strong>{user.email}</strong>. Verified students get a trust badge on their profile and services.</p>
+        {USE_MOCK && (
+          <div className="demo-box">
+            <strong>Local mode only</strong>
+            <p>No email is sent without a backend. Use the code <code>{DEMO_OTP}</code>.</p>
+          </div>
+        )}
         <form onSubmit={submit} noValidate>
           <FormField id="code" label="Verification code" inputMode="numeric" maxLength={6} placeholder="123456"
             value={code} onChange={(e) => setCode(e.target.value)} error={error} />

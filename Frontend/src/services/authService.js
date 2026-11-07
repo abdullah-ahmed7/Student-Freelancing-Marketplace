@@ -1,5 +1,6 @@
 import { run, currentUserOrThrow } from './runtime';
-import { ApiError, setSession, clearSession, getSessionUserId, uid } from './mockDb';
+import { ApiError } from './apiError';
+import { setSession, clearSession, getSessionUserId, uid } from './mockDb';
 import { DEMO_OTP } from '../utils/constants';
 
 const strip = (u) => ({ ...u });

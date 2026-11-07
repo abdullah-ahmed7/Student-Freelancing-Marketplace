@@ -67,7 +67,16 @@ export default function Home() {
       <section className="featured">
         <p className="section-label">TOP RATED</p>
         <h2>Featured services</h2>
-        {featured.data && <div className="services-grid">{featured.data.items.map((s) => <ServiceCard key={s.id} service={s} />)}</div>}
+        {featured.loading && !featured.data && <LoadingState />}
+        {featured.error && <ErrorState error={featured.error} onRetry={featured.reload} />}
+        {featured.data && featured.data.items.length > 0 && <div className="services-grid">{featured.data.items.map((s) => <ServiceCard key={s.id} service={s} />)}</div>}
+        {featured.data && featured.data.items.length === 0 && (
+          <div className="empty-state">
+            <h3>No services listed yet</h3>
+            <p>Be the first to offer a skill on StudentHub.</p>
+            <Link to="/create-service" className="primary-btn btn-link">Create a service</Link>
+          </div>
+        )}
       </section>
     </>
   );

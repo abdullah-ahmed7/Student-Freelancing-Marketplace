@@ -1,5 +1,5 @@
 import { run, requireAdmin, hydrateService } from './runtime';
-import { ApiError } from './mockDb';
+import { ApiError } from './apiError';
 
 export const adminService = {
   listUsers: () => run('Users', (d) => {

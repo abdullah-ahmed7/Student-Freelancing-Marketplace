@@ -8,6 +8,7 @@ import { Avatar, Button, ErrorState, FormField, LoadingState, RatingStars, Statu
 import ConfirmDialog from '../components/ConfirmDialog';
 import OrderTimeline from '../components/OrderTimeline';
 import { formatDate, formatDateTime, formatPKR } from '../utils/format';
+import { isHttpUrl } from '../utils/validators';
 
 const ACTION_LABEL = {
   accept: 'Accept request', reject: 'Reject', start: 'Start work', deliver: 'Submit delivery',
@@ -154,7 +155,7 @@ export default function OrderDetails() {
             <div className="panel">
               <h2>Delivery</h2>
               <p className="pre-wrap">{o.delivery.message}</p>
-              {o.delivery.link && <p><a href={o.delivery.link} target="_blank" rel="noopener noreferrer">Open delivered files ↗</a></p>}
+              {isHttpUrl(o.delivery.link) && <p><a href={o.delivery.link} target="_blank" rel="noopener noreferrer">Open delivered files ↗</a></p>}
               <p className="muted-text">Delivered {formatDateTime(o.delivery.at)}</p>
             </div>
           )}
@@ -184,7 +185,7 @@ export default function OrderDetails() {
             <form className="panel" onSubmit={(e) => { e.preventDefault(); perform('deliver', { message: fields.message, link: fields.link }); }} noValidate>
               <h2>Submit delivery</h2>
               <FormField id="dm" label="Delivery note" as="textarea" rows={4} maxLength={1000} value={fields.message} onChange={(e) => setFields({ ...fields, message: e.target.value })} error={errors.message} />
-              <FormField id="dl" label="Link to files (optional)" placeholder="https://drive.google.com/…" value={fields.link} onChange={(e) => setFields({ ...fields, link: e.target.value })} />
+              <FormField id="dl" label="Link to files (optional)" placeholder="https://drive.google.com/…" value={fields.link} onChange={(e) => setFields({ ...fields, link: e.target.value })} error={errors.link} />
               <div className="inline-actions"><Button type="submit" loading={pending}>Send delivery</Button><Button variant="secondary" onClick={() => setPanel(null)}>Cancel</Button></div>
             </form>
           )}

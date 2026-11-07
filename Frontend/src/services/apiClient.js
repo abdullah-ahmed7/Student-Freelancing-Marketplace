@@ -1,6 +1,6 @@
 // Central HTTP client for when real endpoints are confirmed. Not used while USE_MOCK is true.
 import { API_BASE_URL } from './config';
-import { ApiError } from './mockDb';
+import { ApiError } from './apiError';
 
 export async function apiRequest(path, { method = 'GET', body, token } = {}) {
   let res;
