@@ -45,7 +45,7 @@ export function LoadingState({ label = 'Loading…' }) {
 export function ErrorState({ error, onRetry, title = 'Something went wrong' }) {
   return (
     <div className="state-box state-error" role="alert">
-      <h3>{title}</h3>
+      <h3>{error?.status === 501 ? 'Backend not connected' : title}</h3>
       <p>{error?.message || 'Please try again.'}</p>
       {onRetry && <Button variant="secondary" onClick={onRetry}>Try again</Button>}
     </div>

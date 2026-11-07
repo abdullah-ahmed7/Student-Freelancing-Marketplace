@@ -37,7 +37,7 @@ export function ServiceCard({ service, showStatus = false, actions }) {
               aria-pressed={saved} aria-label={saved ? 'Remove from saved' : 'Save service'}>{saved ? '♥' : '♡'}</button>
           )}
       </div>
-      <h3>{service.title}</h3>
+      <h3 className="service-title"><Link to={`/services/${service.id}`} className="card-link">{service.title}</Link></h3>
       <p className="service-description clamp-3">{service.description}</p>
 
       {service.seller && (

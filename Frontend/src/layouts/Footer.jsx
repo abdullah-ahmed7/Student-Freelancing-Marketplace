@@ -18,7 +18,7 @@ export default function Footer() {
       <p className="footer-note">
         Academic services on StudentHub are limited to tutoring, mentoring, debugging and study guidance.
         Completing graded work for someone else is not allowed. Payments are not processed on this platform.
-        {USE_MOCK && <> <strong>Demo mode:</strong> data is stored only in this browser.</>}
+        {USE_MOCK && <> <strong>Local mode:</strong> data is stored only in this browser.</>}
       </p>
     </footer>
   );

@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import { AuthContext, ToastContext, FavoritesContext } from '../context/context.js';
+import { AuthContext, ToastContext, FavoritesContext } from '../context/context';
 
 export const useAuth = () => useContext(AuthContext);
 export const useToast = () => useContext(ToastContext);

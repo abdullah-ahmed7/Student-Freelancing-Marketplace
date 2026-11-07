@@ -23,7 +23,7 @@ export default function AppLayout() {
     <div className="app">
       <a href="#main" className="skip-link">Skip to content</a>
       <ScrollManager />
-      {USE_MOCK && <div className="demo-banner">Demo mode — sample data stored in this browser. No real payments.</div>}
+      {USE_MOCK && <div className="demo-banner">Local development mode — data is stored only in this browser and no backend is connected. No real payments.</div>}
       <Navbar />
       <div id="main" className="app-main"><Outlet /></div>
       <Footer />

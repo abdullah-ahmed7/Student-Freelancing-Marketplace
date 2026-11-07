@@ -1,5 +1,5 @@
 import { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
-import { AuthContext, ToastContext, FavoritesContext } from './contexts.js';
+import { AuthContext, ToastContext, FavoritesContext } from './context';
 import { authService, serviceService } from '../services';
 
 export function ToastProvider({ children }) {
