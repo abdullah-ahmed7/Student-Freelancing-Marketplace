@@ -8,7 +8,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 22px 8%;
+  padding: 16px var(--gutter);
   border-bottom: 1px solid #222b27;
 }
 
@@ -18,7 +18,7 @@
 }
 
 .logo span {
-  color: #42d69b;
+  color: var(--accent);
 }
 
 .nav-links {
@@ -33,7 +33,7 @@
 }
 
 .nav-links a:hover {
-  color: #42d69b;
+  color: var(--accent);
 }
 
 .nav-buttons {
@@ -55,8 +55,8 @@ button {
 
 .signup-btn,
 .primary-btn {
-  background: #42d69b;
-  color: #07140e;
+  background: var(--accent);
+  color: var(--accent-ink);
   font-weight: bold;
 }
 
@@ -68,7 +68,7 @@ button {
 
 .tagline,
 .section-label {
-  color: #42d69b;
+  color: var(--accent);
   font-size: 12px;
   letter-spacing: 2px;
   margin-bottom: 22px;
@@ -81,11 +81,11 @@ button {
 }
 
 .hero h1 span {
-  color: #42d69b;
+  color: var(--accent);
 }
 
 .hero-text {
-  color: #aab5af;
+  color: var(--text-muted);
   font-size: 17px;
   line-height: 1.7;
   max-width: 550px;
@@ -101,9 +101,9 @@ button {
 }
 
 .secondary-btn {
-  background: #1a2420;
+  background: var(--surface-3);
   color: white;
-  border: 1px solid #35433b;
+  border: 1px solid var(--border-strong);
 }
 
 .search-box {
@@ -111,7 +111,7 @@ button {
   max-width: 550px;
   margin: auto;
   padding: 7px;
-  background: #151c19;
+  background: var(--surface-2);
   border: 1px solid #303b35;
   border-radius: 12px;
   gap: 8px;
@@ -129,8 +129,8 @@ button {
 }
 
 .search-box button {
-  background: #42d69b;
-  color: #07140e;
+  background: var(--accent);
+  color: var(--accent-ink);
   font-weight: bold;
 }
 
@@ -138,7 +138,7 @@ button {
 .categories {
   padding: 55px 8% 90px;
   text-align: center;
-  background: #101613;
+  background: var(--bg-alt);
 }
 
 .categories h2 {
@@ -154,7 +154,7 @@ button {
 
 .category-card {
   padding: 35px 15px;
-  border: 1px solid #2a3730;
+  border: 1px solid var(--border);
   background: #151d19;
   border-radius: 14px;
   font-size: 30px;
@@ -163,7 +163,7 @@ button {
 
 .category-card:hover {
   transform: translateY(-5px);
-  border-color: #42d69b;
+  border-color: var(--accent);
 }
 
 .category-card h3 {
@@ -220,7 +220,7 @@ button {
 }
 
 .navbar .logo {
-  color: #f5f7f6;
+  color: var(--text);
 }
 
 .nav-links a {
@@ -228,7 +228,7 @@ button {
 }
 
 .nav-links a:hover {
-  color: #42d69b;
+  color: var(--accent);
 }
 
 .nav-buttons a {
@@ -269,9 +269,9 @@ button {
   width: 100%;
   max-width: 460px;
   padding: 38px;
-  border: 1px solid #2a3730;
+  border: 1px solid var(--border);
   border-radius: 18px;
-  background: #111815;
+  background: var(--surface);
 }
 
 .auth-card .tagline {
@@ -284,7 +284,7 @@ button {
 }
 
 .auth-description {
-  color: #aab5af;
+  color: var(--text-muted);
   font-size: 14px;
   line-height: 1.6;
   margin-bottom: 28px;
@@ -298,7 +298,7 @@ button {
 
 .auth-card label {
   font-size: 14px;
-  color: #dce5df;
+  color: var(--text-soft);
   margin-top: 8px;
 }
 
@@ -307,8 +307,8 @@ button {
   width: 100%;
   padding: 13px;
   border-radius: 8px;
-  border: 1px solid #35433b;
-  background: #0b0f0e;
+  border: 1px solid var(--border-strong);
+  background: var(--bg);
   color: white;
   outline: none;
   font-size: 14px;
@@ -316,31 +316,31 @@ button {
 
 .auth-card input:focus,
 .auth-card select:focus {
-  border-color: #42d69b;
+  border-color: var(--accent);
 }
 
 .auth-submit {
   width: 100%;
   margin-top: 18px;
-  background: #42d69b;
-  color: #07140e;
+  background: var(--accent);
+  color: var(--accent-ink);
   font-weight: bold;
   padding: 14px;
 }
 
 .auth-submit:hover {
-  background: #34c58a;
+  background: var(--accent-hover);
 }
 
 .auth-footer {
-  color: #aab5af;
+  color: var(--text-muted);
   text-align: center;
   font-size: 14px;
   margin-top: 24px;
 }
 
 .auth-footer a {
-  color: #42d69b;
+  color: var(--accent);
   text-decoration: none;
   font-weight: bold;
 }
@@ -376,7 +376,7 @@ button {
 }
 
 .market-header > p:last-child {
-  color: #aab5af;
+  color: var(--text-muted);
   line-height: 1.7;
 }
 
@@ -390,7 +390,7 @@ button {
 .market-controls input {
   width: 100%;
   padding: 16px;
-  background: #151c19;
+  background: var(--surface-2);
   border: 1px solid #303b35;
   border-radius: 10px;
   color: white;
@@ -399,11 +399,11 @@ button {
 }
 
 .market-controls input:focus {
-  border-color: #42d69b;
+  border-color: var(--accent);
 }
 
 .market-controls input::placeholder {
-  color: #87958d;
+  color: var(--text-faint);
 }
 
 .filter-row {
@@ -414,19 +414,19 @@ button {
 }
 
 .filter-btn {
-  background: #151c19;
+  background: var(--surface-2);
   border: 1px solid #303b35;
   color: #b8c2bd;
 }
 
 .filter-btn:hover {
-  border-color: #42d69b;
+  border-color: var(--accent);
 }
 
 .filter-btn.active {
-  background: #42d69b;
-  color: #07140e;
-  border-color: #42d69b;
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-color: var(--accent);
   font-weight: bold;
 }
 
@@ -450,7 +450,7 @@ button {
 }
 
 .results-heading span {
-  color: #aab5af;
+  color: var(--text-muted);
   font-size: 13px;
 }
 
@@ -464,14 +464,14 @@ button {
   display: flex;
   flex-direction: column;
   padding: 24px;
-  background: #111815;
-  border: 1px solid #2a3730;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 14px;
   transition: 0.2s;
 }
 
 .service-card:hover {
-  border-color: #42d69b;
+  border-color: var(--accent);
   transform: translateY(-4px);
 }
 
@@ -484,8 +484,8 @@ button {
 }
 
 .service-category {
-  color: #42d69b;
-  background: #193329;
+  color: var(--accent);
+  background: var(--accent-soft);
   padding: 7px 10px;
   border-radius: 6px;
   font-size: 11px;
@@ -503,7 +503,7 @@ button {
 }
 
 .service-description {
-  color: #aab5af;
+  color: var(--text-muted);
   font-size: 14px;
   line-height: 1.7;
   min-height: 72px;
@@ -523,7 +523,7 @@ button {
   width: 42px;
   height: 42px;
   background: #244735;
-  color: #42d69b;
+  color: var(--accent);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -534,7 +534,7 @@ button {
 
 .seller-label,
 .price-label {
-  color: #87958d;
+  color: var(--text-faint);
   font-size: 11px;
 }
 
@@ -567,21 +567,21 @@ button {
 
 .service-view-btn {
   width: 100%;
-  background: #42d69b;
-  color: #07140e;
+  background: var(--accent);
+  color: var(--accent-ink);
   font-weight: bold;
   padding: 14px;
 }
 
 .service-view-btn:hover {
-  background: #34c58a;
+  background: var(--accent-hover);
 }
 
 /* Empty results */
 .empty-results {
   text-align: center;
   padding: 65px 20px;
-  border: 1px dashed #35433b;
+  border: 1px dashed var(--border-strong);
   border-radius: 14px;
 }
 
@@ -591,7 +591,7 @@ button {
 }
 
 .empty-results p {
-  color: #aab5af;
+  color: var(--text-muted);
   margin-bottom: 24px;
 }
 
@@ -721,8 +721,8 @@ button {
   max-width: 650px;
   margin: auto;
   padding: 35px;
-  background: #111815;
-  border: 1px solid #2a3730;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 18px;
 }
 
@@ -732,7 +732,7 @@ button {
 }
 
 .create-service-description {
-  color: #aab5af;
+  color: var(--text-muted);
   line-height: 1.7;
   margin-bottom: 28px;
 }
@@ -744,7 +744,7 @@ button {
 }
 
 .create-service-card label {
-  color: #dce5df;
+  color: var(--text-soft);
   font-size: 14px;
   margin-top: 10px;
 }
@@ -755,8 +755,8 @@ button {
   width: 100%;
   padding: 13px;
   border-radius: 8px;
-  border: 1px solid #35433b;
-  background: #0b0f0e;
+  border: 1px solid var(--border-strong);
+  background: var(--bg);
   color: white;
   outline: none;
   font: inherit;
@@ -771,12 +771,12 @@ button {
 .create-service-card input:focus,
 .create-service-card select:focus,
 .create-service-card textarea:focus {
-  border-color: #42d69b;
+  border-color: var(--accent);
 }
 
 .create-service-card input::placeholder,
 .create-service-card textarea::placeholder {
-  color: #87958d;
+  color: var(--text-faint);
 }
 
 .form-error {
