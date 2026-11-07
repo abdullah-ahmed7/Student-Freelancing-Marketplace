@@ -1,99 +1,75 @@
-
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getCreatedServices } from '../data/serviceStorage';
+import { serviceService } from '../services';
+import { useAsync } from '../hooks/useAsync';
+import { useSubmit } from '../hooks/useSubmit';
+import { useDocumentTitle, useToast } from '../hooks/useApp';
+import { Button, EmptyState, ErrorState, LoadingState, PageHeader } from '../components/ui';
+import { ServiceCard } from '../components/Cards';
+import ConfirmDialog from '../components/ConfirmDialog';
+import { SERVICE_STATUSES } from '../utils/constants';
 
-function MyServices() {
-  const myServices = getCreatedServices();
+export default function MyServices() {
+  useDocumentTitle('My Services');
+  const { showToast } = useToast();
+  const { data, error, reload } = useAsync(() => serviceService.listMine(), 'mine');
+  const [filter, setFilter] = useState('All');
+  const [toDelete, setToDelete] = useState(null);
+
+  async function setStatus(s, status) {
+    try { await serviceService.setStatus(s.id, status); showToast(`"${s.title}" is now ${status}.`); reload(); }
+    catch (err) { showToast(err.message, 'error'); }
+  }
+  const [remove, removing] = useSubmit(async () => {
+    try { await serviceService.remove(toDelete.id); showToast('Service deleted.'); reload(); }
+    catch (err) { showToast(err.message, 'error'); }
+    setToDelete(null);
+  });
+
+  if (error) return <main className="page-wrap"><ErrorState error={error} onRetry={reload} /></main>;
+  if (!data) return <LoadingState />;
+  const list = filter === 'All' ? data : data.filter((s) => s.status === filter);
 
   return (
     <main className="marketplace my-services-page">
-
-      <section className="market-header">
-        <p className="tagline">YOUR SELLER DASHBOARD</p>
-        <h1>My Services</h1>
-        <p>Manage and view your published services.</p>
-      </section>
-
+      <PageHeader tagline="YOUR SELLER DASHBOARD" title="My Services" text="Create, edit, pause and archive your listings." />
       <section className="services-section">
-
         <div className="my-services-actions">
-          <h2>{myServices.length} services created</h2>
-
-          <Link
-            to="/create-service"
-            className="primary-btn create-service-link"
-          >
-            + Create Service
-          </Link>
+          <h2>{data.length} service{data.length === 1 ? '' : 's'}</h2>
+          <Link to="/create-service" className="primary-btn create-service-link">+ Create Service</Link>
+        </div>
+        <div className="filter-row tabs">
+          {['All', ...SERVICE_STATUSES].map((s) => (
+            <button key={s} type="button" className={`filter-btn ${filter === s ? 'active' : ''}`} aria-pressed={filter === s} onClick={() => setFilter(s)}>
+              {s}{s !== 'All' && ` (${data.filter((x) => x.status === s).length})`}
+            </button>
+          ))}
         </div>
 
-        {myServices.length > 0 ? (
+        {list.length > 0 ? (
           <div className="services-grid">
-
-            {myServices.map((service) => (
-              <article
-                className="service-card"
-                key={service.id}
-              >
-                <div className="service-top">
-                  <span className="service-category">
-                    {service.category}
-                  </span>
-                  <span className="service-id">
-                    #{service.id}
-                  </span>
+            {list.map((s) => (
+              <ServiceCard key={s.id} service={s} showStatus actions={
+                <div className="card-actions">
+                  <Button to={`/services/${s.id}`} variant="secondary">View</Button>
+                  <Button to={`/services/${s.id}/edit`} variant="secondary">Edit</Button>
+                  {s.status !== 'Active' && s.status !== 'Archived' && <Button onClick={() => setStatus(s, 'Active')}>Publish</Button>}
+                  {s.status === 'Archived' && <Button onClick={() => setStatus(s, 'Draft')}>Restore</Button>}
+                  {s.status === 'Active' && <Button variant="secondary" onClick={() => setStatus(s, 'Paused')}>Pause</Button>}
+                  {s.status !== 'Archived' && <Button variant="secondary" onClick={() => setStatus(s, 'Archived')}>Archive</Button>}
+                  <Button variant="danger" onClick={() => setToDelete(s)}>Delete</Button>
                 </div>
-
-                <h3>{service.title}</h3>
-
-                <p className="service-description">
-                  {service.description}
-                </p>
-
-                <div className="service-footer">
-                  <div>
-                    <span className="price-label">
-                      Starting at
-                    </span>
-                    <h3>
-                      PKR {Number(service.price).toLocaleString()}
-                    </h3>
-                  </div>
-
-                  <span className="delivery-time">
-                    {service.deliveryDays} days
-                  </span>
-                </div>
-
-                <Link
-                  to={`/services/${service.id}`}
-                  className="service-view-btn my-service-view"
-                >
-                  View Service →
-                </Link>
-              </article>
+              } />
             ))}
-
           </div>
         ) : (
-          <div className="empty-results">
-            <h3>You haven't created any services yet.</h3>
-            <p>
-              Publish your first service to showcase your skills.
-            </p>
-
-            <Link
-              to="/create-service"
-              className="primary-btn create-service-link"
-            >
-              Create Your First Service
-            </Link>
-          </div>
+          <EmptyState title={data.length ? `No ${filter.toLowerCase()} services` : "You haven't created any services yet."}
+            text={data.length ? 'Try another status tab.' : 'Publish your first service to showcase your skills.'}
+            action={!data.length && <Link to="/create-service" className="primary-btn create-service-link">Create Your First Service</Link>} />
         )}
-
       </section>
+      <ConfirmDialog open={!!toDelete} title="Delete this service?" message={`"${toDelete?.title}" will be permanently removed. This cannot be undone.`}
+        confirmLabel="Delete service" danger loading={removing} onCancel={() => setToDelete(null)} onConfirm={remove} />
     </main>
   );
 }
-
-export default MyServices;

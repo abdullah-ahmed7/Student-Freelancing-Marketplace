@@ -1,16 +1,4 @@
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background: #0b0f0e;
-  color: #f5f7f6;
-}
-
 .app {
   min-height: 100vh;
 }
@@ -54,7 +42,6 @@ body {
 }
 
 button {
-  cursor: pointer;
   border: none;
   font-size: 14px;
   border-radius: 8px;
