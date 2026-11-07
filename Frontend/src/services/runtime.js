@@ -1,6 +1,7 @@
 import { USE_MOCK } from './config';
 import { notConnected } from './apiClient';
-import { db, save, delay, clone, ApiError, getSessionUserId } from './mockDb';
+import { ApiError } from './apiError';
+import { db, save, delay, clone, getSessionUserId } from './mockDb';
 
 // Runs a mock-backed operation with simulated latency. When live mode is selected and no
 // endpoint contract exists yet, it fails loudly instead of silently inventing endpoints.

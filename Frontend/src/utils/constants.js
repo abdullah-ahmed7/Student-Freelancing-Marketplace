@@ -30,3 +30,7 @@ export const REPORT_REASONS = [
 ];
 
 export const DEMO_OTP = '123456';
+export const DEFAULT_CATEGORIES = [
+  'Design & Creative', 'Programming & Tech', 'Writing & Translation', 'Tutoring & Study Help',
+  'Video & Audio', 'Marketing & Social', 'Data & Analytics', 'Other',
+];

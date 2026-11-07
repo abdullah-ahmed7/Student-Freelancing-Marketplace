@@ -7,6 +7,8 @@ export function isUniversityEmail(v) {
   return isEmail(v) && /\.edu(\.[a-z]{2})?$/i.test(String(v).trim());
 }
 
+export function isHttpUrl(v) { return isUrl(String(v || '').trim()); }
+
 export function isUrl(v) {
   try {
     const u = new URL(v);

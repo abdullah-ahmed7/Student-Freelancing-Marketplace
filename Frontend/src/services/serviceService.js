@@ -1,5 +1,6 @@
 import { run, currentUserOrThrow, hydrateService } from './runtime';
-import { ApiError, uid, getSessionUserId } from './mockDb';
+import { ApiError } from './apiError';
+import { uid, getSessionUserId } from './mockDb';
 import { SERVICE_STATUSES } from '../utils/constants';
 
 function validate(f) {
