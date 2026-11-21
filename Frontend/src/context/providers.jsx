@@ -1,6 +1,7 @@
 import { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { AuthContext, ToastContext, FavoritesContext } from './context';
 import { authService, serviceService } from '../services';
+import { SESSION_EXPIRED_EVENT } from '../services/apiClient';
 
 export function ToastProvider({ children }) {
   const [toasts, setToasts] = useState([]);
@@ -43,6 +44,14 @@ export function AuthProvider({ children }) {
       .finally(() => { if (!off) setReady(true); });
     return () => { off = true; };
   }, []);
+
+  // The API client fires this when the server rejects the stored token (expired / revoked / suspended account)
+  const { showToast } = useContext(ToastContext) || {};
+  useEffect(() => {
+    const onExpired = () => { setUser(null); showToast?.('Your session has expired. Please log in again.', 'error'); };
+    window.addEventListener(SESSION_EXPIRED_EVENT, onExpired);
+    return () => window.removeEventListener(SESSION_EXPIRED_EVENT, onExpired);
+  }, [showToast]);
 
   const login = useCallback(async (creds) => { const u = await authService.login(creds); setUser(u); return u; }, []);
   const register = useCallback(async (f) => { const u = await authService.register(f); setUser(u); return u; }, []);
