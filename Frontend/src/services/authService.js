@@ -1,49 +1,36 @@
-import { run, currentUserOrThrow } from './runtime';
+import { apiRequest, clearToken, getToken, setToken } from './apiClient';
 import { ApiError } from './apiError';
-import { setSession, clearSession, getSessionUserId, uid } from './mockDb';
-import { DEMO_OTP } from '../utils/constants';
-
-const strip = (u) => ({ ...u });
 
 export const authService = {
-  login: ({ email }) => run('Login', (d) => {
-    const u = d.users.find((x) => x.email.toLowerCase() === email.trim().toLowerCase());
-    if (!u) throw new ApiError('No account found for that email.', 401, { email: 'No account found for that email.' });
-    if (u.status === 'suspended') throw new ApiError('This account is suspended. Contact the administrator.', 403);
-    setSession(u.id);
-    return strip(u);
-  }),
+  login: async ({ email, password }) => {
+    const { token, user } = await apiRequest('/auth/login', { method: 'POST', body: { email, password }, public: true });
+    setToken(token);
+    return user;
+  },
 
-  register: (f) => run('Register', (d) => {
-    if (d.users.some((u) => u.email.toLowerCase() === f.email.trim().toLowerCase())) {
-      throw new ApiError('An account with this email already exists.', 409, { email: 'This email is already registered.' });
-    }
-    // Role is always "student". Admin can never be chosen at signup.
-    const user = {
-      id: uid('u'), role: 'student', fullName: f.fullName.trim(), email: f.email.trim().toLowerCase(),
-      degree: f.degree, program: f.program.trim(), department: f.department.trim(), semester: f.semester,
-      bio: '', avatarUrl: '', verified: false, status: 'active', availability: true, skills: [],
-      createdAt: new Date().toISOString(),
+  register: async (f) => {
+    const body = {
+      fullName: f.fullName, email: f.email, degree: f.degree, program: f.program,
+      department: f.department, semester: f.semester, password: f.password,
     };
-    d.users.push(user);
-    setSession(user.id);
-    return strip(user);
-  }, { write: true }),
+    const { token, user } = await apiRequest('/auth/register', { method: 'POST', body, public: true });
+    setToken(token);
+    return user;
+  },
 
-  restore: () => run('Session', (d) => {
-    const id = getSessionUserId();
-    const u = d.users.find((x) => x.id === id);
-    if (!u || u.status === 'suspended') { clearSession(); return null; }
-    return strip(u);
-  }, { ms: 80 }),
+  // Restores the session after a page reload from the stored token.
+  restore: async () => {
+    if (!getToken()) return null;
+    try {
+      return await apiRequest('/auth/me');
+    } catch (err) {
+      if (err instanceof ApiError && (err.status === 401 || err.status === 403)) { clearToken(); return null; }
+      throw err; // network/server problem: keep the token, let the caller decide
+    }
+  },
 
-  logout: async () => { clearSession(); },
+  logout: async () => { clearToken(); },
 
-  // Demo verification: the "code" is shown on screen and labelled as demo.
-  verify: (code) => run('Verification', (d) => {
-    const me = currentUserOrThrow(d);
-    if (code.trim() !== DEMO_OTP) throw new ApiError('That code is not correct.', 400, { code: 'That code is not correct.' });
-    me.verified = true;
-    return strip(me);
-  }, { write: true }),
+  // Demo verification (no email is sent): the backend compares the code with its DEMO_OTP setting.
+  verify: (code) => apiRequest('/auth/verify', { method: 'POST', body: { code } }),
 };

@@ -1,12 +1,19 @@
 import "dotenv/config";
+import mongoose from "mongoose";
 import app from "./app.js";
 import connectDB from "./config/db.js";
+import { assertEnv, env } from "./config/env.js";
 
-const PORT = process.env.PORT || 5000;
+async function main() {
+  assertEnv();
+  await connectDB();
+  const server = app.listen(env.port, () => console.log(`StudentHub API listening on http://localhost:${env.port}`));
+  const shutdown = () => server.close(() => mongoose.disconnect().then(() => process.exit(0)));
+  process.on("SIGINT", shutdown);
+  process.on("SIGTERM", shutdown);
+}
 
-connectDB()
-  .then(() => app.listen(PORT, () => console.log(`Server running on port ${PORT}`)))
-  .catch((err) => {
-    console.error("DB connection failed:", err.message);
-    process.exit(1);
-  });
+main().catch((err) => {
+  console.error("Startup failed:", err.message);
+  process.exit(1);
+});
